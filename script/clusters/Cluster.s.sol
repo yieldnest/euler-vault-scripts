@@ -9,7 +9,7 @@ import "./Addresses.s.sol";
 contract Cluster is ManageClusterBase, AddressesEthereum {
     function defineCluster() internal override {
         // define the path to the cluster addresses file here
-        cluster.clusterAddressesPath = "/script/production/mainnet/clusters/ynRWAxCluster.json";
+        cluster.clusterAddressesPath = "/script/clusters/Cluster.json";
 
         // do not change the order of the assets in the .assets array. if done, it must be reflected in other the other arrays the ltvs matrix.
         // if more than one vauls has to be deployed for the same asset, it can be added in the array as many times as needed.
