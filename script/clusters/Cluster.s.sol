@@ -24,7 +24,7 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
     function configureCluster() internal override {
         // define the governors here
         //cluster.oracleRoutersGovernor = cluster.vaultsGovernor = governorAddresses.accessControlEmergencyGovernor;
-        cluster.oracleRoutersGovernor = cluster.vaultsGovernor = 0xfcad670592a3b24869C0b51a6c6FDED4F95D6975;
+        cluster.oracleRoutersGovernor = cluster.vaultsGovernor = 0x67a114e733b52CAC50A168F02b5626f500801C62;
 
         // define unit of account here
         cluster.unitOfAccount = USDC;
@@ -78,17 +78,10 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
         // define IRM classes here and assign them to the assets
         {
 
-            // USDC does not have an IRM class
-
-            // ynRWAx   
+            // only USDC has an IRM class (only borrowable asset)
             // Base=0% APY  Kink(90%)=11% APY  Max=50.00% APY
-            uint256[4] memory ynRWAxIRM = [uint256(0), uint256(855532772), uint256(22215856237), uint256(3865470566)];
-            cluster.kinkIRMParams[ynRWAx  ] = ynRWAxIRM;
-
-            // ynUSDx   
-            // Base=0% APY  Kink(90%)=15% APY  Max=70.00% APY
-            uint256[4] memory ynUSDxIRM = [uint256(0), uint256(1145746606), uint256(28838594775), uint256(3865470566)];
-            cluster.kinkIRMParams[ynUSDx ] = ynUSDxIRM;
+            uint256[4] memory irm = [uint256(0), uint256(855532772), uint256(22215856237), uint256(3865470566)];
+            cluster.kinkIRMParams[USDC  ] = irm;
         }
 
         // define the ramp duration to be used, in case the liquidation LTVs have to be ramped down
