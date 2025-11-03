@@ -77,12 +77,18 @@ contract Cluster is ManageClusterBase, AddressesEthereum {
 
         // define IRM classes here and assign them to the assets
         {
-            // Base=0% APY  Kink(90%)=4.3% APY  Max=15.00% APY
-            uint256[4] memory irm = [uint256(0), uint256(345139759), uint256(7205461616), uint256(3865470566)];
-            
-            cluster.kinkIRMParams[USDC  ] = irm;
-            cluster.kinkIRMParams[ynRWAx  ] = irm;
-            cluster.kinkIRMParams[ynUSDx ] = irm;
+
+            // USDC does not have an IRM class
+
+            // ynRWAx   
+            // Base=0% APY  Kink(90%)=11% APY  Max=50.00% APY
+            uint256[4] memory ynRWAxIRM = [uint256(0), uint256(855532772), uint256(22215856237), uint256(3865470566)];
+            cluster.kinkIRMParams[ynRWAx  ] = ynRWAxIRM;
+
+            // ynUSDx   
+            // Base=0% APY  Kink(90%)=15% APY  Max=70.00% APY
+            uint256[4] memory ynUSDxIRM = [uint256(0), uint256(1145746606), uint256(28838594775), uint256(3865470566)];
+            cluster.kinkIRMParams[ynUSDx ] = ynUSDxIRM;
         }
 
         // define the ramp duration to be used, in case the liquidation LTVs have to be ramped down
